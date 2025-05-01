@@ -1,0 +1,20 @@
+<div class="main-product-container">
+    <div class="product-container">
+        <div class="card" *ngFor="let product of productList">
+            <img [src]="product.thumbnail">
+            <h5>{{product.title}}</h5>
+            <p class="price">
+                {{product.price.convertedCurrentPrice}}ლ
+                <span class="sale-price"></span>
+            </p>
+            <span class="rating">
+                {{product.rating | number:'1.0-0'}}
+                <i class="fa-solid fa-star"></i>
+            </span>
+            <div class="cart-box">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Add to cart</span>
+            </div>
+        </div>
+    </div>
+</div>

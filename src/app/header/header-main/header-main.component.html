@@ -1,0 +1,21 @@
+<div class="main-header-container">
+    <img [src]="headerImageUrl" alt="Logo">
+    <form class="search-bar" (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
+        <input type="text" name="searchInput" id="search-input" placeholder="რას ეძებთ?" ngModel #searchValue="ngModel">
+        <div class="submit">
+            <button type="submit" name="searchSubmit" id="search-submit">ძებნა</button>
+        </div>
+    </form>
+    <div class="account">
+        <div class="sign-in">
+            <i class="fa-solid fa-user"></i>
+            <p>შესვლა</p>
+        </div>
+        <div class="user">
+            <img [src]="" alt="user image">
+        </div>
+        <div class="cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+    </div>
+</div>

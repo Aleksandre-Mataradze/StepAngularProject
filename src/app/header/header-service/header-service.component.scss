@@ -1,0 +1,45 @@
+.main-header-service-container{
+    background-color: #1e1d1d;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 12%;
+    width: 100%;
+
+    .header-service-contact-info-container{
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        color: white;
+        font-size: 14px;
+
+        .contact{
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            i{
+                color: white;
+            }
+        }
+    }
+    .header-service-services-container{
+        display: flex;
+        align-items: center;
+        color: white;
+        font-size: 14px;
+        gap: 16px;
+        cursor: pointer;
+
+        .language{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            border-radius: 2px;
+
+            img{
+                width: 18px;
+            }
+        }
+    }
+}

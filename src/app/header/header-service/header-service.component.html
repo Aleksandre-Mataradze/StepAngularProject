@@ -1,0 +1,20 @@
+<div class="main-header-service-container">
+    <div class="header-service-contact-info-container">
+        <div class="contact">
+            <i class="fa-solid fa-phone"></i>
+            <p>{{contactInfo.contactInfoNumber}}</p>
+        </div>
+        <div class="contact">
+            <i class="fa-solid fa-envelope"></i>
+            <p>{{contactInfo.contactInfoEmail}}</p>
+        </div>
+    </div>
+    <div class="header-service-services-container">
+        <p>{{services.ServicesInstallment}}</p>
+        <p>{{services.ServicesDelivery}}</p>
+        <div class="language">
+            <img [src]="services.ServicesLanguage.LanguageImg" [alt]="services.ServicesLanguage.Language">
+            <p>{{services.ServicesLanguage.Language}}</p>
+        </div>
+    </div>
+</div>
