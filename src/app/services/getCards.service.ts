@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { ProductsComponent } from "../body/products/products.component";
 
 @Injectable({
@@ -9,6 +9,9 @@ import { ProductsComponent } from "../body/products/products.component";
 export class generateCard{
 
     private allProductApiUrl = 'https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38';
+
+    searchProduct = new Subject<{ input: string, active: boolean}>();
+    searchProduct$ = this.searchProduct.asObservable();
     
     constructor(
         private http: HttpClient
@@ -22,7 +25,7 @@ export class generateCard{
         return new Observable((observer) => {
             this.getAllProduct().subscribe({
                 next: (data:any) => {
-                    console.log(data.products)
+                    // console.log(data.products)
                 const products = data.products
                 observer.next(products)
                 observer.complete()
@@ -31,21 +34,8 @@ export class generateCard{
         })
     }
 
-    searchInputProduct(productName:string): Observable<any>{
-        return new Observable((observer) => {
-            this.getAllProduct().subscribe({
-                next: (data:any) => {
-                    console.log(data.products)
-                const products = data.products
-                for(let product of products){
-                    if(product.title.includes(productName)){
-                        observer.next(product)
-                        observer.complete()
-                    }
-                }
-            }
-            })
-        })
+    emitSearchProduct(input:string, active: boolean){
+        this.searchProduct.next({input, active})
     }
 }
 

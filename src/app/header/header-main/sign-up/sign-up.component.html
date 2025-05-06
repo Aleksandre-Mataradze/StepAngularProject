@@ -1,0 +1,71 @@
+<div class="main-sign-in-container">
+    <div class="close-button" (click)="authTrigger()">
+        <i class="fa-solid fa-xmark" ></i>   
+    </div>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <h2>გაიარეთ რეგისტრაცია</h2>
+        <div class="form-row">
+            <div class="form-column">
+                <label for="">სახელი:</label>
+                <input type="text" formControlName="userName" id="userName">
+            </div>
+            <div class="form-column">
+                <label for="">გვარი:</label>
+                <input type="text" formControlName="userLastName" id="userLastName">
+            </div>
+        </div>
+        <div class="form-column">
+            <label for="">ასაკი:</label>
+            <input type="date" formControlName="userAge" id="userAge">
+        </div>
+        <div class="form-column">
+            <label for="">email:</label>
+            <input type="email" formControlName="userEmail" id="userEmail">
+        </div>
+        <div class="form-column">
+            <label for="">გაიმეორეთ email:</label>
+            <input type="email" formControlName="userSecondEmail" id="userSecondEmail">
+        </div>
+        <div class="form-row">
+            <div class="form-column">
+                <label for="">პაროლი:</label>
+                <input type="password" formControlName="userPassword" id="userPassword">
+            </div>
+            <div class="form-column">
+                <label for="">გაიმეორეთ პაროლი:</label>
+                <input type="password" formControlName="userSecondPassword" id="userSecondPassword">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-column">
+                <label for="">მისამართი:</label>
+                <input type="text" formControlName="userAddress" id="userAddress">
+            </div>
+            <div class="form-column">
+                <label for="">ტელ. ნომერი:</label>
+                <input type="tel" formControlName="userTel" id="userTel">
+            </div>
+        </div>
+        <div class="form-row" style="gap: 50px;">
+            <div class="form-column">
+                <label for="">ZipCode:</label>
+                <input type="number" formControlName="userZipCode" id="userZipCode">
+            </div>
+            <div class="form-column" style="align-items: start;">
+                <label>სქესი:</label>
+                    <label for="userMale">
+                    <input type="radio" formControlName="userGender" id="userMale" value="Male">
+                    მამრობითი
+                    </label>
+                    <label for="userFemale">
+                    <input type="radio" formControlName="userGender" id="userFemale" value="Female">
+                    მდედრობითი
+                    </label>
+            </div>
+        </div>
+        <!-- <button type="submit">ავტორიზაცია</button> -->
+        <input type="submit" value="რეგისტრაცია" id="submit">
+    </form>
+        <button class="go-to-registration" (click)="goToSignIn()">ავტორიზაცია</button>
+</div>
+<div class="blur"></div>

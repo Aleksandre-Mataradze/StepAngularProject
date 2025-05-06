@@ -9,7 +9,9 @@ import { BodyComponent } from './body/body.component';
 import { CategoriesComponent } from './body/categories/categories.component';
 import { ProductsComponent } from './body/products/products.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignInComponent } from './header/header-main/sign-in/sign-in.component';
+import { SignUpComponent } from './header/header-main/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +21,16 @@ import { FormsModule } from '@angular/forms';
     HeaderMainComponent,
     BodyComponent,
     CategoriesComponent,
-    ProductsComponent
+    ProductsComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

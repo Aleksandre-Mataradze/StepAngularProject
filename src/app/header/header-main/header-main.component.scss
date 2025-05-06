@@ -5,6 +5,7 @@
     padding: 16px 12%;
     color: white;
     background-color: #3a3939;
+    position: relative;
 
     img{
         border-radius: 50%;
@@ -89,5 +90,22 @@
             background-color: white;
             cursor: pointer;
         }
+    }
+
+    .form-sign-in{
+        position: fixed;
+        z-index: 3;
+        top: 25vh;
+        left: 38vw;
+        right: 38vw;
+    }
+
+    .form-sign-up{
+        position: fixed;
+        z-index: 3;
+        top: 15vh;
+        left: 38vw;
+        right: 38vw;
+        width: fit-content;
     }
 }

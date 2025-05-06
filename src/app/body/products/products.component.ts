@@ -10,32 +10,60 @@ import { generateCard } from 'src/app/services/getCards.service';
 export class ProductsComponent implements OnInit{
 
   productList:any[] = []
+  searchResult = {
+    searchInput : '',
+    searchActive : false
+  }
 
   constructor(
-    private cardService: generateCard,
-    private headerMain: HeaderMainComponent
+    private cardService: generateCard
   ){}
 
     ngOnInit(): void {
     
-      this.loadProducts();
+       this.loadProducts(); // Loads all products on the page
+
+      this.cardService.searchProduct$.subscribe(data => { // Loads product on the page, that was searched in search bar.
+        this.searchResult.searchInput = data.input
+        this.searchResult.searchActive = data.active
+        this.loadProducts()
+      })
   }
 
   loadProducts(){
-    this.cardService.exportProduct().subscribe({
-      next: (products) => {
-        this.productList = products.map((product:any) => {
-          if(product.price.currency == 'USD'){
-            product.price.convertedCurrentPrice = (product.price.current * 2.73).toFixed(2)
+      this.cardService.exportProduct().subscribe({
+        next: (products) => {
+          if(!this.searchResult.searchInput && !this.searchResult.searchActive){
+            this.productList = products.map((product:any) => {
+              if(product.price.currency == 'USD'){
+                product.price.convertedCurrentPrice = (product.price.current * 2.73).toFixed(2)
+              }else{
+                product.price.convertedCurrentPrice = product.price.current
+              }
+              return product
+            })
           }else{
-            product.price.convertedCurrentPrice = product.price.current
-          }
-          return product
-        })
-        console.log("In component product list is: ", this.productList)
-      }
-    })
-  }
+            this.productList = products.filter((product:any) => {
 
-  
+              if (product.title.includes(this.searchResult.searchInput)){
+                
+                this.productList = products.map((product:any) => {
+                  if(product.price.currency == 'USD'){
+                    product.price.convertedCurrentPrice = (product.price.current * 2.73).toFixed(2)
+                  }else{
+                    product.price.convertedCurrentPrice = product.price.current
+                  }
+                  return product
+                })
+
+                return product
+              }else{
+                return 0;
+              }
+            })
+          }
+          console.log("პროდუქტები", products)
+        }
+      })
+  }
 }

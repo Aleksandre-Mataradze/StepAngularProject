@@ -1,0 +1,19 @@
+<div class="main-sign-in-container">
+    <div class="close-button" (click)="authTrigger()">
+        <i class="fa-solid fa-xmark" ></i>   
+    </div>
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <h2>გაიარეთ ავტორიზაცია</h2>
+        <div class="form-row">
+            <label for="">email:</label>
+            <input type="email" formControlName="userEmail" id="email" required>
+        </div>
+        <div class="form-row">
+            <label for="">პაროლი:</label>
+            <input type="password" formControlName="userPassword" id="password" required>
+        </div>
+        <button type="submit">ავტორიზაცია</button>
+    </form>
+        <button class="go-to-registration" (click)="goToRegistration()">რეგისტრაცია</button>
+</div>
+<div class="blur"></div>

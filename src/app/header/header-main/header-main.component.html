@@ -7,7 +7,7 @@
         </div>
     </form>
     <div class="account">
-        <div class="sign-in">
+        <div class="sign-in" (click)="authTrigger()">
             <i class="fa-solid fa-user"></i>
             <p>შესვლა</p>
         </div>
@@ -18,4 +18,6 @@
             <i class="fa-solid fa-cart-shopping"></i>
         </div>
     </div>
+    <app-sign-in class="form-sign-in" *ngIf="signInForm.active" (userLoggedIn)="receiveUserData($event)"></app-sign-in>
+    <app-sign-up class="form-sign-up" *ngIf="signUpForm.active"></app-sign-up>
 </div>
