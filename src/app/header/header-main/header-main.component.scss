@@ -12,7 +12,7 @@
         width: 85px;
         cursor: pointer;
     }
-
+     
     .search-bar{
         display: flex;
         width: 36rem;
@@ -66,17 +66,41 @@
         }
         
         .user{
-            display: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             padding: 2px;
             border-radius: 50%;
             background-color: white;
             position: relative;
             cursor: pointer;
 
-            .user-img{
+            img{
                 border-radius: 50%;
                 height: 43px;
                 width: 43px;
+            }
+
+            .user-options{
+                background-color: #FFFFFF;
+                border-radius: 10px;
+                position: absolute;
+                top: 54px;
+                width: fit-content;
+                padding: 2px 4px;
+
+                ul{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 6px;
+                    min-width: 80px;
+                    list-style: none;
+
+                    li{
+
+                    }
+                }
             }
         }
 

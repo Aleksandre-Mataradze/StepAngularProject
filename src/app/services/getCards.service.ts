@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from "rxjs";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { BehaviorSubject, Observable, Subject } from "rxjs";
 import { ProductsComponent } from "../body/products/products.component";
 
 @Injectable({
@@ -8,9 +8,10 @@ import { ProductsComponent } from "../body/products/products.component";
 })
 export class generateCard{
 
-    private allProductApiUrl = 'https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38';
+    private allProductApi = 'https://api.everrest.educata.dev/shop/products/all?page_index=1&page_size=38';
+    private searchProductApi = `https://api.everrest.educata.dev/shop/products/search`
 
-    searchProduct = new Subject<{ input: string, active: boolean}>();
+    searchProduct = new BehaviorSubject<{input: string}>({input: ''});
     searchProduct$ = this.searchProduct.asObservable();
     
     constructor(
@@ -18,7 +19,7 @@ export class generateCard{
     ){}
 
     getAllProduct(): Observable<object>{
-        return this.http.get<object>(this.allProductApiUrl)
+        return this.http.get<object>(this.allProductApi)
     }   
 
     exportProduct(): Observable<any>{
@@ -34,8 +35,13 @@ export class generateCard{
         })
     }
 
-    emitSearchProduct(input:string, active: boolean){
-        this.searchProduct.next({input, active})
+    streamSearchInput(input){
+        this.searchProduct.next({input})
+    }
+
+    emitSearchProduct(input:string){
+        const params = new HttpParams().set('keywords', input)
+        return this.http.get(this.searchProductApi, { params })
     }
 }
 

@@ -25,7 +25,6 @@ export class ProductsComponent implements OnInit{
 
       this.cardService.searchProduct$.subscribe(data => { // Loads product on the page, that was searched in search bar.
         this.searchResult.searchInput = data.input
-        this.searchResult.searchActive = data.active
         this.loadProducts()
       })
   }
@@ -33,7 +32,7 @@ export class ProductsComponent implements OnInit{
   loadProducts(){
       this.cardService.exportProduct().subscribe({
         next: (products) => {
-          if(!this.searchResult.searchInput && !this.searchResult.searchActive){
+          if(!this.searchResult.searchInput){
             this.productList = products.map((product:any) => {
               if(product.price.currency == 'USD'){
                 product.price.convertedCurrentPrice = (product.price.current * 2.73).toFixed(2)
@@ -42,11 +41,10 @@ export class ProductsComponent implements OnInit{
               }
               return product
             })
-          }else{
-            this.productList = products.filter((product:any) => {
-
-              if (product.title.includes(this.searchResult.searchInput)){
-                
+          }else if (this.searchResult.searchInput){
+            this.cardService.emitSearchProduct(this.searchResult.searchInput).subscribe({
+              next: (data:any) => {
+                const products = data.products
                 this.productList = products.map((product:any) => {
                   if(product.price.currency == 'USD'){
                     product.price.convertedCurrentPrice = (product.price.current * 2.73).toFixed(2)
@@ -55,14 +53,10 @@ export class ProductsComponent implements OnInit{
                   }
                   return product
                 })
-
-                return product
-              }else{
-                return 0;
               }
             })
           }
-          console.log("პროდუქტები", products)
+          // console.log("პროდუქტები", products)
         }
       })
   }

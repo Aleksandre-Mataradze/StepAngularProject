@@ -7,7 +7,28 @@ export interface userData{
     userTel:string,
     userZipCode:number,
     userGender:string,
-    userAvatar:string
+    userAvatar:string,
+    userID:string,
+    userLoggedIn:boolean
+}
+
+export interface JSONuserData{
+    address:string,
+    age:number,
+    avatar:string,
+    cartID:string,
+    chatIDs:[],
+    email:string,
+    firstName:string,
+    gender:string,
+    lastName:string,
+    password:string,
+    phone:string,
+    role:string,
+    verified:boolean,
+    zipcode:string,
+    _id:string,
+    userLoggedIn:boolean
 }
 
 export interface User {

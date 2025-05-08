@@ -1,23 +1,28 @@
 <div class="main-header-container">
-    <img [src]="headerImageUrl" alt="Logo">
+    <img [src]="headerImageUrl" alt="Logo" class="main-logo" (click)="goToMainPage()">
     <form class="search-bar" (ngSubmit)="onSubmit(searchForm)" #searchForm="ngForm">
         <input type="text" name="searchInput" id="search-input" placeholder="რას ეძებთ?" ngModel #searchValue="ngModel">
         <div class="submit">
             <button type="submit" name="searchSubmit" id="search-submit">ძებნა</button>
         </div>
     </form>
-    <div class="account">
-        <div class="sign-in" (click)="authTrigger()">
+    <div class="account"  [ngStyle]="userData.userLoggedIn ? { gap : '48px'} : {}">
+        <div class="sign-in" (click)="authTrigger()" *ngIf="!userData.userLoggedIn">
             <i class="fa-solid fa-user"></i>
             <p>შესვლა</p>
         </div>
-        <div class="user">
-            <img [src]="" alt="user image">
+        <div class="user" *ngIf="userData.userLoggedIn" (click)="userOptions()">
+            <img *ngIf="userData.avatar" [src]="userData?.avatar" alt="">
+            <div class="user-options" *ngIf="userOptionsActive">
+                <ul>
+                    <li (click)="logOut()">Log Out</li>
+                </ul>
+            </div>
         </div>
         <div class="cart">
             <i class="fa-solid fa-cart-shopping"></i>
         </div>
     </div>
-    <app-sign-in class="form-sign-in" *ngIf="signInForm.active" (userLoggedIn)="receiveUserData($event)"></app-sign-in>
+    <app-sign-in class="form-sign-in" *ngIf="signInForm.active" (userLoggedIn)="receiveUserData()"></app-sign-in>
     <app-sign-up class="form-sign-up" *ngIf="signUpForm.active"></app-sign-up>
 </div>

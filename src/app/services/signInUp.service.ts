@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { Router } from "@angular/router";
+import { JSONuserData } from "src/assets/interfaces/auth.interfaces";
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +19,8 @@ export class signInUp{
 
     verifyEmailApi:string = 'https://api.everrest.educata.dev/auth/verify_email'
 
+    getUserByTokenApi:string = 'https://api.everrest.educata.dev/auth'
+
 
     signInActive = new BehaviorSubject<boolean>(false)
     signUpActive = new BehaviorSubject<boolean>(false)
@@ -25,11 +29,13 @@ export class signInUp{
     signUpActive$ = this.signUpActive.asObservable();
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private router: Router
     ){}
 
     activateSignIn(){
         this.signInActive.next(true)
+
     }
     deactivateSignIn(){
         this.signInActive.next(false)
@@ -49,6 +55,7 @@ export class signInUp{
     }
 
     signIn(email:string, password:string){
+        this
         return this.http.post(this.signInApi, ({email, password}))
     }
 
@@ -58,5 +65,13 @@ export class signInUp{
 
     verifyEmail(userVerifyEmail:string){
         return this.http.post(this.verifyEmailApi, (userVerifyEmail))
+    }
+
+    getUserByToken(token:string){
+        let user;
+        const headers = new HttpHeaders({
+            'Authorization' : `Bearer ${token}`
+        })
+        return this.http.get<JSONuserData>(this.getUserByTokenApi, {headers})
     }
 }

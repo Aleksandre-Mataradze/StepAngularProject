@@ -26,7 +26,10 @@ export class SignInComponent implements OnInit{
     userTel: '',
     userZipCode: null,
     userGender: '',
-    userAvatar: ''
+    userAvatar: '',
+    userID: '',
+    //userLoggedIn is not data base key
+    userLoggedIn: false
   }
 
   constructor(
@@ -57,12 +60,12 @@ export class SignInComponent implements OnInit{
   onSubmit(){
     this.auth.signIn(this.signInForm.controls['userEmail'].value, this.signInForm.controls['userPassword'].value).subscribe({
       next: (respone: AuthResponse) => {
-        console.log('Successful log in:', respone)
         const headers = new HttpHeaders({
           'Authorization': `Bearer ${respone.access_token}`
         })
         this.http.get<User>(this.getUserByTokenApi, {headers}).subscribe(user => {
-          console.log("user:", user)
+        
+          localStorage.setItem('Token', respone.access_token)
 
           this.userData = {
             userName : user.firstName,
@@ -73,17 +76,22 @@ export class SignInComponent implements OnInit{
             userTel : user.phone,
             userZipCode : user.zipcode,
             userGender : user.gender,
-            userAvatar : "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.veryicon.com%2Ficons%2Fmiscellaneous%2Fuser-avatar%2Fuser-avatar-male-5.html&psig=AOvVaw31q6Nr8HTkYWyhM3Qcr6DC&ust=1742756962241000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOCvveKxnowDFQAAAAAdAAAAABAE"
+            userAvatar : user.avatar,
+            userID : user._id,
+            //userLoggedIn is not data base key
+            userLoggedIn : false
           }
 
           this.userLoggedIn.emit(this.userData)
         })
+        setTimeout(() => {
+          this.auth.deactivateSignIn()
+        }, 500);
       },
       error: (error) => {
         console.log('Not successful log in:', error)
       }
     })
-    console.log(this.signInForm)
   }
 
   testClick(){

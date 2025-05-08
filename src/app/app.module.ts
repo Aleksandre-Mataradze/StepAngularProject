@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './header/header-main/sign-in/sign-in.component';
 import { SignUpComponent } from './header/header-main/sign-up/sign-up.component';
+import { LaptopsPageComponent } from './laptops-page/laptops-page.component';
+import { LaptopsComponent } from './laptops-page/laptops/laptops.component';
+import { FiltersComponent } from './laptops-page/filters/filters.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,10 @@ import { SignUpComponent } from './header/header-main/sign-up/sign-up.component'
     CategoriesComponent,
     ProductsComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    LaptopsPageComponent,
+    LaptopsComponent,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
