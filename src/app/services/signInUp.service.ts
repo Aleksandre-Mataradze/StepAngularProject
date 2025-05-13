@@ -68,7 +68,6 @@ export class signInUp{
     }
 
     getUserByToken(token:string){
-        let user;
         const headers = new HttpHeaders({
             'Authorization' : `Bearer ${token}`
         })

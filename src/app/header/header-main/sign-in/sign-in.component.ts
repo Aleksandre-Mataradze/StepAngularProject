@@ -32,6 +32,9 @@ export class SignInComponent implements OnInit{
     userLoggedIn: false
   }
 
+  signInSuccessful:boolean = true
+
+
   constructor(
     private auth: signInUp,
     private http: HttpClient,
@@ -52,12 +55,13 @@ export class SignInComponent implements OnInit{
 
   initializeSignInForm(){
     this.signInForm = new FormGroup({
-      'userEmail' : new FormControl(null,(Validators.required)),
+      'userEmail' : new FormControl(null,[Validators.required,Validators.email]),
       'userPassword' : new FormControl(null,(Validators.required))
     })
   }
 
   onSubmit(){
+    console.log(this.signInForm)
     this.auth.signIn(this.signInForm.controls['userEmail'].value, this.signInForm.controls['userPassword'].value).subscribe({
       next: (respone: AuthResponse) => {
         const headers = new HttpHeaders({
@@ -90,6 +94,7 @@ export class SignInComponent implements OnInit{
       },
       error: (error) => {
         console.log('Not successful log in:', error)
+        this.signInSuccessful = false
       }
     })
   }

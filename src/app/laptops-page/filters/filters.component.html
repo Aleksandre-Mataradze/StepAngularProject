@@ -3,27 +3,26 @@
         <div class="filter-box">
             <p>ბრენდები</p>
             <ul id="brand-list-box">
-                <li #brand *ngFor="let brand of brandList" (click)="filterByBrand(brand)">{{brand}}</li>
+                <li *ngFor="let brand of brandList" (click)="filterByBrand(brand)" [class.active-brand]="selectedBrands.includes(brand)">{{brand}}</li>
             </ul>
         </div>
         <div class="filter-box">
             <p>ფასი</p>
-            <form class="price-box">
-                <input type="number" id="min-price" name="minPrice" placeholder="მინიმუმი" required>
-                <input type="number" id="max-price" name="maxPrice" placeholder="მაქსიმუმი" required>
+            <form class="price-box" [formGroup]="priceFilter" (ngSubmit)="filterByPrice()">
+                <input type="number" id="min-price" formControlName="minPrice" placeholder="მინიმუმი" required>
+                <input type="number" id="max-price" formControlName="maxPrice" placeholder="მაქსიმუმი" required>
                 <input type="submit" name="priceSubmitButton" id="submit-button-price" value="გაფილტვრა">
-                <button id="price-refresh-button"><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button id="price-refresh-button" (click)="removeFilterPrice()"><i class="fa-solid fa-arrows-rotate"></i></button>
             </form>
         </div>
         <div class="filter-box">
             <p>რეიტინგი</p>
-            <form class="rating-box">
-                <input type="number" id="min-rating" name="minRating" placeholder="0" required>
-                <input type="number" id="max-rating" name="maxRating" placeholder="5" required>
+            <form class="rating-box" [formGroup]="ratingFilter" (ngSubmit)="filterByRating()">
+                <input type="number" id="min-rating" formControlName="minRating" placeholder="0" required>
+                <input type="number" id="max-rating" formControlName="maxRating" placeholder="5" required>
                 <input type="submit" name="ratingSubmitButton" id="submit-button-rating" value="გაფილტვრა">
-                <button id="rating-refresh-button"><i class="fa-solid fa-arrows-rotate"></i></button>
+                <button id="rating-refresh-button" (click)="removeFilterRating()"><i class="fa-solid fa-arrows-rotate"></i></button>
             </form>
         </div>
     </div>
-    <div class="product-container"></div>
 </div>

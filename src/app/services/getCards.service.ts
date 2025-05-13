@@ -26,7 +26,6 @@ export class generateCard{
         return new Observable((observer) => {
             this.getAllProduct().subscribe({
                 next: (data:any) => {
-                    // console.log(data.products)
                 const products = data.products
                 observer.next(products)
                 observer.complete()
@@ -40,7 +39,9 @@ export class generateCard{
     }
 
     emitSearchProduct(input:string){
-        const params = new HttpParams().set('keywords', input)
+        const params = new HttpParams()
+        .set('keywords', input)
+        .set('page_size', 10)
         return this.http.get(this.searchProductApi, { params })
     }
 }

@@ -14,7 +14,12 @@ import { SignInComponent } from './header/header-main/sign-in/sign-in.component'
 import { SignUpComponent } from './header/header-main/sign-up/sign-up.component';
 import { LaptopsPageComponent } from './laptops-page/laptops-page.component';
 import { LaptopsComponent } from './laptops-page/laptops/laptops.component';
-import { FiltersComponent } from './laptops-page/filters/filters.component';
+import { laptopFiltersComponent } from './laptops-page/filters/filters.component';
+import { MobilesPageComponent } from './mobiles-page/mobiles-page.component';
+import { MobilesComponent } from './mobiles-page/mobiles/mobiles.component';
+import { mobileFiltersComponent } from './mobiles-page/filters/filters.component';
+import { ProductComponent } from './product/product.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -30,14 +35,19 @@ import { FiltersComponent } from './laptops-page/filters/filters.component';
     SignUpComponent,
     LaptopsPageComponent,
     LaptopsComponent,
-    FiltersComponent
+    laptopFiltersComponent,
+    MobilesPageComponent,
+    MobilesComponent,
+    mobileFiltersComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

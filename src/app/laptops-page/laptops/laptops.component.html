@@ -1,11 +1,11 @@
 <div class="main-laptops-container">
     <div class="laptops-container">
-        <div class="card" *ngFor="let product of productList">
+        <div class="card" *ngFor="let product of productList" (click)="goToProductPage(product)">
             <img [src]="product.thumbnail">
             <h5>{{product.title}}</h5>
-            <p class="price">
-                {{product.price.convertedCurrentPrice}}ლ
-                <span class="sale-price"></span>
+            <p class="price" [ngClass]="{'line-through' : product.price.discountPercentage}">
+                {{product.price.beforeDiscountPrice}}
+                <span class="sale-price" *ngIf="product.price.discountPercentage">{{product.price.convertedCurrentPrice}}ლ</span>
             </p>
             <span class="rating">
                 {{product.rating | number:'1.0-0'}}

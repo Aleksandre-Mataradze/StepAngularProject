@@ -25,19 +25,6 @@ export class CategoriesComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    // this.router.events
-    // .pipe(filter(event => event instanceof NavigationEnd))
-    // .subscribe(() => {
-    //   let currentRoute = this.route.root;
-    //   while (currentRoute.firstChild) {
-    //     currentRoute = currentRoute.firstChild;
-    //   }
-
-    //   currentRoute.paramMap.subscribe(params => {
-    //     this.userID = params.get('userID');
-    //     console.log('ID:', this.userID);
-    //   });
-    // });
   }
 
   activateCategoriesList(){
@@ -48,6 +35,9 @@ export class CategoriesComponent implements OnInit{
     console.log(category)
     if(category === 'ლეპტოპები'){
       this.router.navigate(['/Laptops'])
+    }else if(category === 'მობილურები'){
+      console.log("მობილურებში")
+      this.router.navigate(['/Mobiles'])
     }
   }
 }

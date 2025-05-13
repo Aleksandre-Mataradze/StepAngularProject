@@ -1,7 +1,10 @@
+@import './assets/styles/config.scss';
+
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: NotoGeo;
 }
 
 $primaryblue: #2f64ad; 

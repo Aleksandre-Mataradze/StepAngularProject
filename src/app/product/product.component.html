@@ -1,0 +1,40 @@
+<div class="product-container">
+    <div class="product-img-container">
+        <div class="product-img">
+            <img [src]="product?.images[index]" alt="">
+        </div>
+        <div id="previous" (click)="previousImage()"> 
+            <i class="fa-solid fa-arrow-left"></i>
+        </div>
+        <div id="next" (click)="nextImage()">
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+    </div>
+    <div class="product-info-container">
+        <div class="product-info">
+            <p class="product-title">{{product?.title}}</p>
+            <div class="prices">
+                <p class="product-price" *ngIf="product?.price.discountPercentage">{{product?.price.convertedPrice | number:'1.0-0'}}₾</p>
+                <p [ngClass]="{'product-before-price' : product?.price.discountPercentage, 'product-price' : !product?.price.discountPercentage}">{{product?.price.convertedBeforePrice | number:'1.0-0'}}₾</p>
+                <p class="discount-percentage" *ngIf="product?.price.discountPercentage">(-{{product?.price.discountPercentage}}%)</p>
+            </div>
+        </div>
+        <div class="product-details-container">
+            <ul id="product-details">
+                <li>ბრენდი: {{product?.brand}}</li>
+                <li>მარაგშია: {{product?.stock}} ერთეული</li>
+                <li>გარანტია: {{product?.warranty}} წელი</li>
+                <li>გამოშვების წელი: {{product?.issueDate | date: 'YYYY'}}</li>
+                <li>კატეგორია: {{product?.category.name}}</li>
+            </ul>
+            <div class="product-description-container">
+                <h3>Description</h3>
+                <p>{{product?.description}}</p>
+            </div>
+        </div>
+        <div class="cart-container">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>კალათაში დამატება</span>
+        </div>
+    </div>
+</div>

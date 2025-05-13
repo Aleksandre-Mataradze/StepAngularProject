@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { signInUp } from 'src/app/services/signInUp.service';
-import { HeaderMainComponent } from '../header-main.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -31,13 +30,13 @@ export class SignUpComponent implements OnInit{
 
   initializeSignUpForm(){
     this.signUpForm = new FormGroup({
-      'userName' : new FormControl(null, [Validators.minLength(2), Validators.maxLength(20)]),
-      'userLastName' : new FormControl(null, [Validators.minLength(2), Validators.maxLength(20)]),
-      'userAge' : new FormControl(null, [Validators.min(1)]),
-      'userEmail' : new FormControl(null, [Validators.required]),
-      'userVerifyEmail' : new FormControl(null, [Validators.required]),
-      'userPassword' : new FormControl(null, [Validators.minLength(8), Validators.maxLength(30)]),
-      'userSecondPassword' : new FormControl(null, [Validators.required]),
+      'userName' : new FormControl(null, [Validators.minLength(2), Validators.maxLength(20), Validators.required]),
+      'userLastName' : new FormControl(null, [Validators.minLength(2), Validators.maxLength(20), Validators.required]),
+      'userAge' : new FormControl(null, [Validators.min(1), Validators.required]),
+      'userEmail' : new FormControl(null, [Validators.required, Validators.email]),
+      'userVerifyEmail' : new FormControl(null, [Validators.required, Validators.email]),
+      'userPassword' : new FormControl(null, [Validators.minLength(8), Validators.maxLength(30), Validators.required]),
+      'userSecondPassword' : new FormControl(null, [Validators.minLength(8), Validators.maxLength(30), Validators.required]),
       'userAddress' : new FormControl(null, [Validators.required]),
       'userTel' : new FormControl(null, [Validators.required]),
       'userZipCode' : new FormControl(null, [Validators.required]),

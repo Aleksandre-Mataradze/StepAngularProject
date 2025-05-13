@@ -7,54 +7,56 @@
         <div class="form-row">
             <div class="form-column">
                 <label for="">სახელი:</label>
-                <input type="text" formControlName="userName" id="userName">
+                <input type="text" formControlName="userName" id="userName" [ngStyle]="signUpForm.controls['userName'].invalid && signUpForm.controls['userName'].touched ? {'border': '1px solid red'} : {}">
             </div>
             <div class="form-column">
                 <label for="">გვარი:</label>
-                <input type="text" formControlName="userLastName" id="userLastName">
+                <input type="text" formControlName="userLastName" id="userLastName" [ngStyle]="signUpForm.controls['userLastName'].invalid && signUpForm.controls['userLastName'].touched ? {'border': '1px solid red'} : {}">
             </div>
         </div>
         <div class="form-column">
             <label for="">ასაკი:</label>
-            <input type="date" formControlName="userAge" id="userAge">
+            <input type="number" formControlName="userAge" id="userAge" [ngStyle]="signUpForm.controls['userAge'].invalid && signUpForm.controls['userAge'].touched ? {'border': '1px solid red'} : {}">
         </div>
         <div class="form-column">
             <label for="">email:</label>
-            <input type="email" formControlName="userEmail" id="userEmail">
+            <input type="email" formControlName="userEmail" id="userEmail" [ngStyle]="signUpForm.controls['userEmail'].invalid && signUpForm.controls['userEmail'].touched ? {'border': '1px solid red'} : {}">
+            <span [ngStyle]="signUpForm.controls['userEmail'].invalid && signUpForm.controls['userEmail'].touched ? {} : {'display' : 'none'}"> <i class="fa-solid fa-circle-info"></i> შეიყვანეთ ელ. ფოსტა შესაბამისი ფორმატით</span>
         </div>
         <div class="form-column">
             <label for="">გაიმეორეთ email:</label>
-            <input type="email" formControlName="userSecondEmail" id="userSecondEmail">
+            <input type="email" formControlName="userVerifyEmail" id="userSecondEmail" [ngStyle]="signUpForm.controls['userVerifyEmail'].invalid && signUpForm.controls['userVerifyEmail'].touched ? {'border': '1px solid red'} : {}">
+            <span [ngStyle]="signUpForm.controls['userVerifyEmail'].invalid && signUpForm.controls['userVerifyEmail'].touched ? {} : {'display' : 'none'}"> <i class="fa-solid fa-circle-info"></i> გაიმეორეთ ელ. ფოსტა</span>
         </div>
         <div class="form-row">
             <div class="form-column">
                 <label for="">პაროლი:</label>
-                <input type="password" formControlName="userPassword" id="userPassword">
+                <input type="password" formControlName="userPassword" id="userPassword" [ngStyle]="signUpForm.controls['userPassword'].invalid && signUpForm.controls['userPassword'].touched ? {'border': '1px solid red'} : {}">
             </div>
             <div class="form-column">
                 <label for="">გაიმეორეთ პაროლი:</label>
-                <input type="password" formControlName="userSecondPassword" id="userSecondPassword">
+                <input type="password" formControlName="userSecondPassword" id="userSecondPassword" [ngStyle]="signUpForm.controls['userSecondPassword'].invalid && signUpForm.controls['userSecondPassword'].touched ? {'border': '1px solid red'} : {}">
             </div>
         </div>
         <div class="form-row">
             <div class="form-column">
                 <label for="">მისამართი:</label>
-                <input type="text" formControlName="userAddress" id="userAddress">
+                <input type="text" formControlName="userAddress" id="userAddress" [ngStyle]="signUpForm.controls['userAddress'].invalid && signUpForm.controls['userAddress'].touched ? {'border': '1px solid red'} : {}">
             </div>
             <div class="form-column">
                 <label for="">ტელ. ნომერი:</label>
-                <input type="tel" formControlName="userTel" id="userTel">
+                <input type="tel" formControlName="userTel" id="userTel" [ngStyle]="signUpForm.controls['userTel'].invalid && signUpForm.controls['userTel'].touched ? {'border': '1px solid red'} : {}">
             </div>
         </div>
         <div class="form-row" style="gap: 50px;">
             <div class="form-column">
                 <label for="">ZipCode:</label>
-                <input type="number" formControlName="userZipCode" id="userZipCode">
+                <input type="number" formControlName="userZipCode" id="userZipCode" [ngStyle]="signUpForm.controls['userZipCode'].invalid && signUpForm.controls['userZipCode'].touched ? {'border': '1px solid red'} : {}">
             </div>
             <div class="form-column" style="align-items: start;">
                 <label>სქესი:</label>
                     <label for="userMale">
-                    <input type="radio" formControlName="userGender" id="userMale" value="Male">
+                    <input type="radio" formControlName="userGender" id="userMale" value="Male" [ngStyle]="signUpForm.controls['userGender'].invalid && signUpForm.controls['userGender'].touched ? {'border': '1px solid red'} : {}">
                     მამრობითი
                     </label>
                     <label for="userFemale">
@@ -63,7 +65,6 @@
                     </label>
             </div>
         </div>
-        <!-- <button type="submit">ავტორიზაცია</button> -->
         <input type="submit" value="რეგისტრაცია" id="submit">
     </form>
         <button class="go-to-registration" (click)="goToSignIn()">ავტორიზაცია</button>
